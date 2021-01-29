@@ -101,11 +101,16 @@ int main(int argc, char *argv[])
 					
 					case 2: // ADD
 						// sp = sp – 1;
-						// stack[sp] = stack[sp] + stack[sp + 1]
+						// stack[sp] = stack[sp] + stack[sp + 1];
+
 					case 3: // SUB
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] - stack[sp + 1];
+
 					case 4: // MUL
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] * stack[sp + 1];
+
 					case 5: // DIV
 					
 					case 6: // ODD
