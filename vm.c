@@ -89,36 +89,38 @@ int main(int argc, char *argv[])
 			case 2: 
 				switch (IR.m)
 				{
-					case 0:
+					case 0: // RTN
 						// stack[bp - 1] = stack[sp];
 						// sp = bp - 1;
 						// bp = stack[sp + 2];
 						// pc = stack[sp + 3];
 
-					case 1:
+					case 1: // NEG
 						// stack[sp] = -1 * stack[sp];
 					
-					case 2:
+					case 2: // ADD
 					
-					case 3:
+					case 3: // SUB
 					
-					case 4:
+					case 4: // MUL
 					
-					case 5:
+					case 5: // DIV
 					
-					case 6:
+					case 6: // ODD
 					
-					case 7:
+					case 7: // MOD
 					
-					case 8:
+					case 8: // EQL
 					
-					case 9:
+					case 9:	// NEQ
 					
-					case 10:
+					case 10: // LSS
 					
-					case 11:
+					case 11: // LEQ
 					
-					case 12:
+					case 12: // GTR
+
+					case 13: // GEQ
 
 				}
 
