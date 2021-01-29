@@ -112,23 +112,40 @@ int main(int argc, char *argv[])
 						// stack[sp] = stack[sp] * stack[sp + 1];
 
 					case 5: // DIV
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] / stack[sp + 1];
+
 					case 6: // ODD
-					
+						// stack[sp] = stack[sp] mod 2;
+
 					case 7: // MOD
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] mod stack[sp + 1];
+
 					case 8: // EQL
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] == stack[sp + 1];
+
 					case 9:	// NEQ
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] != stack[sp + 1];
+
 					case 10: // LSS
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] < stack[sp + 1];
+
 					case 11: // LEQ
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] <= stack[sp + 1];
+
 					case 12: // GTR
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] > stack[sp + 1];
 
 					case 13: // GEQ
-
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] >= stack[sp + 1];
+					
 				}
 
 			case 3:
