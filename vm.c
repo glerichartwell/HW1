@@ -214,6 +214,11 @@ int main(int argc, char *argv[])
 						// break;
 				}
 			// break;
+
+			default:
+				printf("opcode error: This instruction does not exist.\n");
+				break;
+
 		}
 
 	}
