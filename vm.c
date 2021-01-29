@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	int *stack = calloc(MAX_STACK_HEIGHT, sizeof(int));
 	int **text = calloc(MAX_CODE_LENGTH, sizeof(int*));
 
-	
+	// THIS IS TO CHECK GIT HUB
 	FILE *fp;
 	instruction IR = NULL;
 	
@@ -80,7 +80,63 @@ int main(int argc, char *argv[])
 		PC += 1;
 
 		// Execute
+		switch (IR.opcode)
+		{
+			case 1: 
+				// sp = sp + 1
+				// stack[sp] = M;
+				// break;
+			case 2: 
+				switch (IR.m)
+				{
+					case 0:
+						// stack[bp - 1] = stack[sp];
+						// sp = bp - 1;
+						// bp = stack[sp + 2];
+						// pc = stack[sp + 3];
 
+					case 1:
+						// stack[sp] = -1 * stack[sp];
+					
+					case 2:
+					
+					case 3:
+					
+					case 4:
+					
+					case 5:
+					
+					case 6:
+					
+					case 7:
+					
+					case 8:
+					
+					case 9:
+					
+					case 10:
+					
+					case 11:
+					
+					case 12:
+
+				}
+
+			case 3:
+
+			case 4:
+
+			case 5:
+
+			case 6:
+
+			case 7:
+
+			case 8:
+
+			case 9:
+
+		}
 
 	}
 	
