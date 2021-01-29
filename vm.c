@@ -87,7 +87,8 @@ int main(int argc, char *argv[])
 				// stack[sp] = M;
 				// break;
 			case 2: 
-				switch (IR.m)
+				switch (IR.m) // CASES ARE JUST PSEUDO CODE FROM HW INSTRUCTIONS 
+							  // NEEDS TO BE UPDATED
 				{
 					case 0: // RTN
 						// stack[bp - 1] = stack[sp];
@@ -99,7 +100,8 @@ int main(int argc, char *argv[])
 						// stack[sp] = -1 * stack[sp];
 					
 					case 2: // ADD
-					
+						// sp = sp – 1;
+						// stack[sp] = stack[sp] + stack[sp + 1]
 					case 3: // SUB
 					
 					case 4: // MUL
