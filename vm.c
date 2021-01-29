@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
 
 					case 3: // Halt program
 						halt = 1;
-						// break;
+						break;
 				}
 			// break;
 
