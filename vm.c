@@ -97,67 +97,82 @@ int main(int argc, char *argv[])
 						// sp = bp - 1;
 						// bp = stack[sp + 2];
 						// pc = stack[sp + 3];
+						// break;
 
 					case 1: // NEG
 						// stack[sp] = -1 * stack[sp];
-					
+						// break;
+
 					case 2: // ADD
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] + stack[sp + 1];
+						// break;
 
 					case 3: // SUB
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] - stack[sp + 1];
+						// break;
 
 					case 4: // MUL
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] * stack[sp + 1];
+						// break;
 
 					case 5: // DIV
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] / stack[sp + 1];
+						// break;
 
 					case 6: // ODD
 						// stack[sp] = stack[sp] mod 2;
+						// break;
 
 					case 7: // MOD
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] mod stack[sp + 1];
+						// break;
 
 					case 8: // EQL
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] == stack[sp + 1];
+						// break;
 
 					case 9:	// NEQ
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] != stack[sp + 1];
+						// break;
 
 					case 10: // LSS
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] < stack[sp + 1];
+						// break;
 
 					case 11: // LEQ
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] <= stack[sp + 1];
+						// break;
 
 					case 12: // GTR
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] > stack[sp + 1];
+						// break;
 
 					case 13: // GEQ
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] >= stack[sp + 1];
-
+						// break;
 				}
 				// break;
 
 			case 3: // LOD
 				// sp = sp + 1;
 				// stack[sp] = stack[base(stack, L, bp) + M];
+				// break;
 
 			case 4: // STO
 				// stack[base(stack, L, bp) + M] = stack[sp];
 				// sp = sp – 1;
+				// break;
 
 			case 5: // CAL
 				// stack[sp + 1] = base(stack, L, bp);  /* static link (SL)
@@ -166,16 +181,20 @@ int main(int argc, char *argv[])
 				// stack[sp + 4] = stack[sp]; 			/* parameter (P)
  				// bp = sp + 1;
  				// pc = M;
+				// break;
 
 			case 6: // INC
 				// sp = sp + M;
+				// break;
 
 			case 7: // JMP
 				// pc = M;
+				// break;
 
 			case 8: // JPC
 				// if stack[sp] == 0 then { pc = M; }
 				// sp = sp - 1;
+				// break;
 
 			case 9: // SYS
 				switch
@@ -183,22 +202,22 @@ int main(int argc, char *argv[])
 					case 1:
 						// printf(“%d”, stack[sp]);
 						// sp = sp - 1;
+						// break;
 
 					case 2:
 						// sp  sp + 1;
 						// scanf(“%d”, stack[sp]);
+						// break;
 
 					case 3: // Halt program
 						halt = 1;
-
+						// break;
 				}
-
+			// break;
 		}
 
 	}
 	
-
-
 	return 0;
 }
 
