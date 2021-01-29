@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
 						// break;
 
 					case 2:
-						// sp  sp + 1;
+						// sp = sp + 1;
 						// scanf(“%d”, stack[sp]);
 						// break;
 
