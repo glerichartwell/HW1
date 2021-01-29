@@ -82,11 +82,12 @@ int main(int argc, char *argv[])
 		// Execute
 		switch (IR.opcode)
 		{
-			case 1: 
+			case 1: // LIT
 				// sp = sp + 1
 				// stack[sp] = M;
 				// break;
-			case 2: 
+
+			case 2: // OPR
 				switch (IR.m) // CASES ARE JUST PSEUDO CODE FROM HW INSTRUCTIONS 
 							  // NEEDS TO BE UPDATED
 				{
@@ -145,22 +146,23 @@ int main(int argc, char *argv[])
 					case 13: // GEQ
 						// sp = sp – 1;
 						// stack[sp] = stack[sp] >= stack[sp + 1];
-					
+
 				}
+				// break;
 
-			case 3:
+			case 3: // LOD
 
-			case 4:
+			case 4: // STO
 
-			case 5:
+			case 5: // CAL
 
-			case 6:
+			case 6: // INC
 
-			case 7:
+			case 7: // JMP
 
-			case 8:
+			case 8: // JPC
 
-			case 9:
+			case 9: // SYS
 
 		}
 
