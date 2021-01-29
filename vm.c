@@ -81,7 +81,8 @@ int main(int argc, char *argv[])
 		PC += 1;
 
 		// Execute
-		switch (IR.opcode)
+		switch (IR.opcode)	// CASES ARE JUST PSEUDO CODE FROM HW INSTRUCTIONS 
+							// NEEDS TO BE UPDATED
 		{
 			case 1: // LIT
 				// sp = sp + 1
@@ -89,8 +90,7 @@ int main(int argc, char *argv[])
 				// break;
 
 			case 2: // OPR
-				switch (IR.m) // CASES ARE JUST PSEUDO CODE FROM HW INSTRUCTIONS 
-							  // NEEDS TO BE UPDATED
+				switch (IR.m) 
 				{
 					case 0: // RTN
 						// stack[bp - 1] = stack[sp];
