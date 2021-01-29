@@ -2,6 +2,7 @@
 // Martin de Salterain
 // COP3402 Spring 21
 // HW1 Virtual Machine
+
 #include <stdio.h>
 #include <stdlib.h>
 
