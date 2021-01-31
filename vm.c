@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 	int bp = 0;
 	int pc = 0;
 	int halt = 1;
-	int i, line_number;
+	int i, line_number, ar_end_index;
 	int scan_buffer;
 
 	// Check proper argument count
@@ -213,7 +213,7 @@ int main(int argc, char *argv[])
 
 			// CAL: Calls a fuction whose instruction is indexed in the text by "m."
 			case 5:
-				ar_delimiter_stack[sp] = 1;                       // Facilitates print format
+				ar_end_index = sp;
 				stack[sp + 1] = base(stack, ir->l, bp);           // static link (SL)
 				stack[sp + 2] = bp;                               // dynamic link (DL)
 				stack[sp + 3] = pc;                               // return address (RA)
@@ -240,10 +240,8 @@ int main(int argc, char *argv[])
 			// JPC: Executes a conditional jump based on the value at the top of the stack.
 			case 8:
 				if (stack[sp] == 0)
-				{
 					pc = ir->m;
-					sp--;
-				}
+				sp--;
 
 				strcpy(ir->op, "JPC");
 				break;
@@ -262,8 +260,8 @@ int main(int argc, char *argv[])
 					case 2: // Receive input from user.
 						sp++;
 						printf("Please Enter an Integer: ");
-						scanf("%d", &stack[sp]);
 						printf("\n");
+						scanf("%d", &stack[sp]);
 						break;
 
 					case 3: // Halt program
@@ -287,6 +285,10 @@ int main(int argc, char *argv[])
 				printf(" |");
 		}
 		printf("\n");
+
+		// Facilitates print format
+		if (ir->opcode == 5)
+			ar_delimiter_stack[ar_end_index] = 1;
 	}
 
 	return 0;
