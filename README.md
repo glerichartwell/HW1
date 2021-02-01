@@ -4,7 +4,6 @@
 Glenn Hartwell
 Martin de Salterain
 COP 3402, Spring 2021
-
 *******************
 
 1. Description
