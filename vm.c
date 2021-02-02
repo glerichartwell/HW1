@@ -13,7 +13,6 @@
 typedef struct instruction
 {
 	int opcode;
-	char op[4]; // For storing instruction abbreviation
 	int l;
 	int m;
 } instruction;
@@ -48,6 +47,8 @@ int main(int argc, char *argv[])
 	int i, line_number, ar_end_index;
 	int scan_buffer;
 
+	char op[4]; // For storing instruction abbreviation
+
 	// Check proper argument count
 	if (argc != 2)
 	{
@@ -76,7 +77,7 @@ int main(int argc, char *argv[])
 
 	// Print header for stack trace.
 	printf("                  PC   BP   SP   stack\n");
-	printf("Initial values:   %d   %d   %d   \n", pc, bp, sp);
+	printf("Initial values:   %2d   %2d   %2d   \n", pc, bp, sp);
 
 	while (halt)
 	{
@@ -94,7 +95,7 @@ int main(int argc, char *argv[])
 			case 1:
 				sp++;
 				stack[sp] = ir->m;
-				strcpy(ir->op, "LIT");
+				strcpy(op, "LIT");
 				break;
 
 			// OPR: Performs some operation based on the value of m.
@@ -108,83 +109,83 @@ int main(int argc, char *argv[])
 						sp = bp - 1;
 						bp = stack[sp + 2]; // Base of restored AR = DL of current AR.
 						pc = stack[sp + 3]; // Restore program counter to return address.
-						strcpy(ir->op, "RTN");
+						strcpy(op, "RTN");
 						break;
 
 					case 1: // NEG
 						stack[sp] = -1 * stack[sp];
-						strcpy(ir->op, "NEG");
+						strcpy(op, "NEG");
 						break;
 
 					case 2: // ADD
 						sp--;
 						stack[sp] = stack[sp] + stack[sp + 1];
-						strcpy(ir->op, "ADD");
+						strcpy(op, "ADD");
 						break;
 
 					case 3: // SUB
 						sp--;
 						stack[sp] = stack[sp] - stack[sp + 1];
-						strcpy(ir->op, "SUB");
+						strcpy(op, "SUB");
 						break;
 
 					case 4: // MUL
 						 sp--;
 						stack[sp] = stack[sp] * stack[sp + 1];
-						strcpy(ir->op, "MUL");
+						strcpy(op, "MUL");
 						break;
 
 					case 5: // DIV
 						sp--;
 						stack[sp] = stack[sp] / stack[sp + 1];
-						strcpy(ir->op, "DIV");
+						strcpy(op, "DIV");
 						break;
 
 					case 6: // ODD
 						stack[sp] = stack[sp] % 2;
-						strcpy(ir->op, "ODD");
+						strcpy(op, "ODD");
 						break;
 
 					case 7: // MOD
 						sp--;
 						stack[sp] = stack[sp] % stack[sp + 1];
-						strcpy(ir->op, "MOD");
+						strcpy(op, "MOD");
 						break;
 
 					case 8: // EQL (==)
 						sp--;
 						stack[sp] = (stack[sp] == stack[sp + 1]);
-						strcpy(ir->op, "EQL");
+						strcpy(op, "EQL");
 						break;
 
 					case 9:	// NEQ (!=)
 						sp--;
 						stack[sp] = (stack[sp] != stack[sp + 1]);
-						strcpy(ir->op, "NEQ");
+						strcpy(op, "NEQ");
 						break;
 
 					case 10: // LSS (<)
 						sp--;
 						stack[sp] = (stack[sp] < stack[sp + 1]);
-						strcpy(ir->op, "LSS");
+						strcpy(op, "LSS");
 						break;
 
 					case 11: // LEQ (<=)
 						sp--;
 						stack[sp] = (stack[sp] <= stack[sp + 1]);
-						strcpy(ir->op, "LEQ");
+						strcpy(op, "LEQ");
 						break;
 
 					case 12: // GTR (>)
 						sp--;
 						stack[sp] = (stack[sp] > stack[sp + 1]);
-						strcpy(ir->op, "GTR");
+						strcpy(op, "GTR");
 						break;
 
 					case 13: // GEQ (>=)
 						sp--;
 						stack[sp] = (stack[sp] >= stack[sp + 1]);
-						strcpy(ir->op, "GEQ");
+						strcpy(op, "GEQ");
 						break;
 				}
 				break;
@@ -194,7 +195,7 @@ int main(int argc, char *argv[])
 			case 3:
 				sp++;
 				stack[sp] = stack[base(stack, ir->l, bp) + ir->m];
-				strcpy(ir->op, "LOD");
+				strcpy(op, "LOD");
 				break;
 
 			// STO: Stores the element from the top of the stack at some index "l"
@@ -202,7 +203,7 @@ int main(int argc, char *argv[])
 			case 4:
 				stack[base(stack, ir->l, bp) + ir->m] = stack[sp];
 				sp--;
-				strcpy(ir->op, "STO");
+				strcpy(op, "STO");
 				break;
 
 			// CAL: Calls a fuction whose instruction is indexed in the text by "m."
@@ -216,19 +217,19 @@ int main(int argc, char *argv[])
 
 				// Point program counter to instruction of the callee.
 				pc = ir->m;
-				strcpy(ir->op, "CAL");
+				strcpy(op, "CAL");
 				break;
 
 			// INC: Used to increment the stack pointer by some offset "m."
 			case 6:
 				sp = sp + ir->m;
-				strcpy(ir->op, "INC");
+				strcpy(op, "INC");
 				break;
 
 			// JMP: Sets the next instruction to one at index "m."
 			case 7:
 				pc = ir->m;
-				strcpy(ir->op, "JMP");
+				strcpy(op, "JMP");
 				break;
 
 			// JPC: Executes a conditional jump based on the value at the top of the stack.
@@ -237,12 +238,12 @@ int main(int argc, char *argv[])
 					pc = ir->m;
 				sp--;
 
-				strcpy(ir->op, "JPC");
+				strcpy(op, "JPC");
 				break;
 
 			// SYS: Initiates a system call based on the value of m.
 			case 9:
-				strcpy(ir->op, "SYS");
+				strcpy(op, "SYS");
 				switch(ir->m)
 				{
 					case 1: // Print top of stack value
@@ -254,8 +255,8 @@ int main(int argc, char *argv[])
 					case 2: // Receive input from user.
 						sp++;
 						printf("Please Enter an Integer: ");
-						printf("\n");
 						scanf("%d", &stack[sp]);
+						printf("\n");
 						break;
 
 					case 3: // Halt program
@@ -270,7 +271,7 @@ int main(int argc, char *argv[])
 		}
 
 		// Print current state.
-		printf("%d %s  %d %d    %d    %d    %d", line_number, ir->op, ir->l, ir->m, pc, bp, sp);
+		printf("%2d %s  %2d %2d     %2d   %2d   %2d", line_number, op, ir->l, ir->m, pc, bp, sp);
 		printf("  ");
 		for(i = 0; i <= sp; i++)
 		{
